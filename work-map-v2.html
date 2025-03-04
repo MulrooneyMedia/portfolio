@@ -1,0 +1,58 @@
+<!doctype html>
+<html ng-app="mmPortfolioApp">
+<head>
+	<meta charset="utf-8">
+	<title>Google Map exercise - Distribution of places that I have worked</title>
+
+	<meta name="ICBM" content="51.576344, -0.259831" />
+	<meta name="author" content="Mark Mulrooney" />
+	<meta name="keywords" content="mark mulrooney, front end web developer (contractor), london, CSS, HTML, JavaScript" />
+    <meta name="DC.title" content="Online portfolio of Mark Mulrooney - front end web developer (contractor)." />
+    <meta name="description" content="The webpage of Mark Mulrooney, a front end web developer (contractor) based in London." />
+	
+	<meta property="og:image" content="https://www.mulrooney.co.uk/mul_images/work-google-map-v2.gif" />
+	
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	
+	<link rel="shortcut icon" href="https://www.mulrooney.co.uk/favicon.ico" />
+	
+	<link rel="stylesheet" type="text/css" href="css/cssreset-min.css">
+	<link rel="stylesheet" type="text/css" href="css/cssZenGarden220Garments.css">
+	<link rel="stylesheet" type="text/css" href="css/mmStyle.css">
+</head>
+<body ng-controller="pageController" class="nonBootstrap">
+
+	<mm-portfolio-header></mm-portfolio-header>
+	
+	<div class="container">
+	
+		<section id="contentOlympic" class="workMap">
+		
+			<h2>Google Map Exercise</h2>
+			<h3>Distribution of my work locations</h3>
+		
+			<div id="map">
+				<div id="map_canvas"></div>
+			</div>
+			<h3>Legend</h3>
+			<p>
+				<img src="mul_images/icons/map-pin.png" width="14" height="15" alt="Contract location" class="legend" /> - Contract location.<br/>
+				<img src="mul_images/icons/map-pin-with-link.png" width="14" height="15" alt="Contract location" class="legend" /> - Contract location, link to web development included.
+			</p>
+		
+			<p>The map above demonstrates how Google maps can be styled and also how my work locations are usually in central London. The job detail and location data is saved in a JSON file and accessed with AngularJS.</p>
+			<p><a href="/">Return to home page</a></p>
+		
+		</section> <!-- #content -->
+	</div>
+
+
+<script src="js/libs/angular1.5/libs/angular.min.js" ></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACtMkHt74JKG9KoDHNtLTtiTBm439BF34"></script>
+<script src="js/work-map-apps.js"></script>
+<script src="js/work-map-controller.js"></script>
+<script src="js/directives.js"></script>
+
+</body>
+</html>

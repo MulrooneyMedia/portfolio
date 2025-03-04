@@ -1,0 +1,71 @@
+<!doctype html>
+<html ng-app='mmPortfolioApp'>
+<head>
+	<meta charset="utf-8">
+	<title>A Carousel demonstrator</title>
+
+	<meta name="ICBM" content="51.576344, -0.259831" />
+	<meta name="author" content="Mark Mulrooney" />
+	<meta name="keywords" content="mark mulrooney, front end web developer (contractor), london, CSS, HTML, JavaScript" />
+    <meta name="DC.title" content="Online portfolio of Mark Mulrooney - front end web developer (contractor)." />
+    <meta name="description" content="The webpage of Mark Mulrooney, a front end web developer (contractor) based in London." />
+	
+	<meta property="og:url" content="https://www.mulrooney.co.uk/" />
+	<meta property="og:description" content="A Carousel Demonstrator." />
+	<meta property="og:image" content="https://www.mulrooney.co.uk/mul_images/carousel-screenshot.png" />
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	
+	<link rel="shortcut icon" href="https://www.mulrooney.co.uk/favicon.ico" />
+	
+	<link rel="stylesheet" type="text/css" href="css/cssreset-min.css">
+    <!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">-->
+	<link rel="stylesheet" type="text/css" href="css/cssZenGarden220Garments.css">
+	<link rel="stylesheet" type="text/css" href="css/mmStyle.css">
+	<link rel="stylesheet" type="text/css" href="css/carousel.css">
+</head>
+<body ng-controller="pageController" id="carouselID" class="nonBootstrap">
+
+<mm-portfolio-header></mm-portfolio-header>
+
+<div class="container">
+	<div class="col carouselCol">
+		
+		<div id="carousel1" class="carouselWrapper" tabindex="0" aria-label="carousel buttons" aria-controls="carousel">
+			<h2>A Carousel Demonstrator</h2>
+			<p>The JS code for this carousel was originally written for a large supermarket, but sadly never saw the light of day. It is object oriented and uses the Dojo toolkit and here I have combined it with AngularJS which is plotting my contracts out from a JSON file using a ng-repeat on an unordered list. I came across the issue of the carousel code trying to run before the AngularJS code had finished plotting the list of contracts. That was solved by use of the on-finish-render directive. The carousel is accessible to non-mouse users, one can use the tab key to move the focus on to the carousel controls and operate it, or use the arrow keys once the focus is on the UL.</p>
+
+			<div class="carouselInner">
+				<ul class="productLister gridView svg" id="carouselContent1">
+					<li class="gridItem" ng-repeat="job in pastContracts"  on-finish-render="ngRepeatFinished">
+						<img alt="company logo" ng-src="{{getImagePath(job.logo)}}"  class="{{job.logoClass}}" />
+						<p><strong>{{ job.date_company }}</strong> <em>{{job.role}}</em></p>
+						<p>{{ job.descj }}</p>
+						<p ng-show="job.descj2 != null">{{ job.descj2 }}</p>
+						<ol ng-show="job.link_name1 != null">
+							<li class="contractLink" ng-show="job.link_name1 != null"><a href="{{job.link_href1}}">{{job.link_name1}}</a></li>
+							<li class="contractLink" ng-show="job.link_name2 != null"><a href="{{job.link_href2}}">{{job.link_name2}}</a></li>
+							<li class="contractLink" ng-show="job.link_name3 != null"><a href="{{job.link_href3}}">{{job.link_name3}}</a></li>
+						</ol>
+					</li>
+				</ul>
+			</div> <!-- end of carouselInner -->
+		</div> <!-- end of carouselWrapper -->
+	</div> <!-- end of col -->
+</div> <!-- end of container -->
+
+<script src="js/libs/angular1.5/libs/angular.min.js" ></script>
+<script src="js/apps.js"></script>
+<script src="js/carousel-controller.js"></script>
+<script src="js/directives.js"></script>
+<script src="js/carousel-directives.js"></script>
+
+<script src="js/libs/hammer.min.js"></script>
+
+<script src="js/libs/dojo.1.7.1/dojo/dojo.js"></script>
+
+<script src="js/obj-orient-init.js"></script>
+<script src="js/carousel.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!doctype html>
+<html ng-app='mmPortfolioApp'>
+<head>
+	<meta charset="utf-8">
+	<title>An exercise in presenting a table using AngularJS - by Mark Mulrooney - a front end web developer (contractor) based in London</title>
+
+	<meta name="ICBM" content="51.576344, -0.259831" />
+	<meta name="author" content="Mark Mulrooney" />
+	<meta name="keywords" content="mark mulrooney, front end web developer (contractor), london, CSS, HTML, JavaScript" />
+    <meta name="DC.title" content="Online portfolio of Mark Mulrooney - front end web developer (contractor)." />
+    <meta name="description" content="The webpage of Mark Mulrooney, a front end web developer (contractor) based in London." />
+	
+	<meta property="og:url" content="https://www.mulrooney.co.uk/" />
+	<meta property="og:description" content="An online portfolio to demonstrate my skills in HTML, CSS, JavaScript and other technologies. Links to my CVs and websites that I have worked on." />
+	<meta property="og:image" content="https://www.mulrooney.co.uk/mul_images/mark-mulrooney-selfie-200sq.jpg" />
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	
+	<link rel="shortcut icon" href="https://www.mulrooney.co.uk/favicon.ico" />
+	
+	<link rel="stylesheet" type="text/css" href="css/cssreset-min.css">
+	<link rel="stylesheet" type="text/css" href="css/cssZenGarden220Garments.css">
+	<link rel="stylesheet" type="text/css" href="css/mmStyle.css">
+</head>
+<body ng-controller="pageController" class="nonBootstrap">
+
+<mm-portfolio-header></mm-portfolio-header>
+
+<div class="container tabular">
+	<h2>Past Contracts</h2>
+	<p>Below is the result of a coding exercise using AngularJS to show how a table can be re-ordered alphabetically on a column or filtered by a search term. The table data comes from a JSON file holding information about all of my contracts.</p>
+    <p>Nov. 2020 update - I can now send adapted URLs to potential clients that will automatically filter the table with a search term.<br/>
+    Eg. <a href="https://www.mulrooney.co.uk/tabular.html?#searchWord=animation">https://www.mulrooney.co.uk/tabular.html?#searchWord=animation</a>
+    </p>
+    <button ng-click="orderByField=null; reverseSort = !reverseSort">Return to original chronological order</button>
+    <input type="text" class="form-control" placeholder="Search term to filter by" ng-model="searchTerm" id="searchWord">
+    <button ng-click="searchTerm = ''; searchClearance()">Clear search term</button>
+	<table class="svg">
+		<tr>
+			<th class="imgCol">Company<br/>
+				<a ng-click="alphabettySorter('logo')">    <!-- <a ng-click="orderByField='logo'; reverseSort = !reverseSort"> -->
+					Reorder alphabetically
+					<span ng-class="directionClass()"></span>
+                    <!-- Reorder alphabetically<span ng-show="orderByField == 'logo'">&nbsp;<span ng-show="!reverseSort">A>Z</span><span ng-show="reverseSort">Z>A</span></span> -->
+				</a>
+			</th>
+			<th class="dateCol">Contract date &amp; Company<br/>
+				<a ng-click="orderByField='date_company'; reverseSort = !reverseSort">
+					Reorder <span ng-show="orderByField == 'date_company'">  <span ng-show="!reverseSort">Z>A</span><span ng-show="reverseSort">A>Z</span></span>
+				</a>
+			</th>
+			<th class="roleCol">Contract Role
+				<a ng-click="orderByField='role'; reverseSort = !reverseSort">
+					Reorder <span ng-show="orderByField == 'role'">  <span ng-show="!reverseSort">Z>A</span><span ng-show="reverseSort">A>Z</span></span>
+				</a>
+			</th>
+			<th>Contract Description</th>
+		</tr>
+		<tr ng-repeat="job in pastContracts | orderBy:orderByField:reverseSort | filter:searchTerm">
+			<td class="imgCol"><img alt="company logo" ng-src="{{getImagePath(job.logo)}}" class="{{job.logoClass}}"  /></td>
+			<td class="dateCol"><strong>{{ job.date_company }}</strong></td>
+			<td class="roleCol"> <em>{{job.role}}</em></td>
+			<td>
+				<p>{{ job.descj }}</p>
+				<p>{{ job.descj2 }}</p>
+				<ul>
+					<li class="contractLink"><a href="{{job.link_href1}}">{{job.link_name1}}</a></li>
+					<li class="contractLink"><a href="{{job.link_href2}}">{{job.link_name2}}</a></li>
+					<li><a href="{{job.link_href3}}">{{job.link_name3}}</a></li>
+				</ul>
+			</td>
+		</tr>
+	</table>	
+
+</div>
+
+<script src="js/libs/angular1.5/libs/angular.min.js" ></script>
+<script src="js/apps.js"></script>
+<script src="js/table-controller.js"></script>
+<script src="js/directives.js"></script>
+
+</body>
+</html>
